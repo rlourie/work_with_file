@@ -55,16 +55,20 @@ def sorted_file_task3(list_file):
                 counter += 1
             result[buf_name] = counter
         result = dict(sorted(result.items(), key=lambda x: x[1]))
-    path = os.path.join(os.getcwd(), 'sorted', "result.txt")
-    for key, value in result.items():
-        with open(path, 'w', encoding="utf-8") as result:
-
+    path1 = os.path.join(os.getcwd(), 'sorted', "result.txt")
+    with open(path1, 'w', encoding="utf-8") as f:
+        for key, value in result.items():
+            path = os.path.join(os.getcwd(), 'sorted', key)
+            f.write(key + '\n')
+            f.write(str(value) + '\n')
+            with open(path, encoding="utf-8") as txt:
+                f.write(txt.read() + '\n')
 
 
 cook_book = create_cook_book_task1()
 random = get_shop_list_by_dishes_task2(['Запеченный картофель', 'Омлет'], 2)
-# pprint(cook_book)
-# print()
-# pprint(random)
+pprint(cook_book)
+print()
+pprint(random)
 list = ['1.txt', '2.txt', '3.txt']
 sorted_file_task3(list)
